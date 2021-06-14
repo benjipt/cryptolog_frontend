@@ -17,6 +17,7 @@ export default class NewForm extends Component {
     }
 
     handleChange(event) {
+        console.log(event.currentTarget.id)
         this.setState({ [event.currentTarget.id]: event.currentTarget.value })
       }
 
@@ -44,11 +45,12 @@ export default class NewForm extends Component {
                         <label htmlFor="transactionDate" className="form-label">Transaction Date</label>
                         <input onChange={ this.handleChange } type="date" className="form-control" name="transactionDate" id="transactionDate" />
                     </div>
-                    <div className="mb-3">
-                        <label className="btn btn-outline-primary me-2" for="transactionType">Buy</label>
-                        <input onChange={ this.handleChange } type="radio" className="btn-check" name="transactionType" id="transactionType" value="buy" autoComplete="off" />
-                        <label className="btn btn-outline-primary" for="transactionType">Sell</label>
-                        <input onChange={ this.handleChange } type="radio" className="btn-check" name="transactionType" id="transactionType" value="sell" autoComplete="off" />
+                    <div>
+                        <label htmlFor="transactionType">Buy</label>
+                        <input onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="buy" autoComplete="off" />
+
+                        <label htmlFor="transactionType">Sell</label>
+                        <input onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="sell" autoComplete="off" />
                     </div>
                     <input type="submit" className="btn btn-lg btn-success" value="Add Transaction" />
                 </form>
