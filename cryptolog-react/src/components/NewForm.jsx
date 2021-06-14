@@ -1,6 +1,24 @@
 import React, { Component } from 'react'
 
 export default class NewForm extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            coin: '',
+            quantity: '',
+            perUnitPrice: '',
+            exchange: '',
+            transactionDate: '',
+            transactionType: ''
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({ [event.currentTarget.id]: event.currentTarget.value })
+      }
 
     render() {
         return (
@@ -8,29 +26,29 @@ export default class NewForm extends Component {
                 <form>
                     <div className="mb-3">
                         <label htmlFor="coin" className="form-label">Coin</label>
-                        <input type="text" className="form-control" name="coin" id="coin" placeholder="BTC, ETH..." />
+                        <input onChange={ this.handleChange } type="text" className="form-control" name="coin" id="coin" placeholder="BTC, ETH..." />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="quantity" className="form-label">Quantity</label>
-                        <input type="number" step="any" className="form-control" name="quantity" id="quantity" placeholder="0.1" />
+                        <input onChange={ this.handleChange } type="number" step="any" className="form-control" name="quantity" id="quantity" placeholder="0.1" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="perUnitPrice" className="form-label">Price per Unit</label>
-                        <input type="number" step="0.01" className="form-control" name="perUnitPrice" id="perUnitPrice" placeholder="25.00"/>
+                        <input onChange={ this.handleChange } type="number" step="0.01" className="form-control" name="perUnitPrice" id="perUnitPrice" placeholder="25.00" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exchange" className="form-label">Exchange Name</label>
-                        <input type="text" className="form-control" name="exchange" id="exchange" placeholder="Coinbase, Gemini, Kraken, Binance, etc..." />
+                        <input onChange={ this.handleChange } type="text" className="form-control" name="exchange" id="exchange" placeholder="Coinbase, Gemini, Kraken, Binance, etc..." />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="transactionDate" className="form-label">Transaction Date</label>
-                        <input type="date" className="form-control" name="transactionDate" id="transactionDate" />
+                        <input onChange={ this.handleChange } type="date" className="form-control" name="transactionDate" id="transactionDate" />
                     </div>
                     <div className="mb-3">
                         <label className="btn btn-outline-primary me-2" for="transactionType">Buy</label>
-                        <input type="radio" className="btn-check" name="transactionType" id="transactionType" value="buy" />
+                        <input onChange={ this.handleChange } type="radio" className="btn-check" name="transactionType" id="transactionType" value="buy" autoComplete="off" />
                         <label className="btn btn-outline-primary" for="transactionType">Sell</label>
-                        <input type="radio" className="btn-check" name="transactionType" id="transactionType" value="sell" />
+                        <input onChange={ this.handleChange } type="radio" className="btn-check" name="transactionType" id="transactionType" value="sell" autoComplete="off" />
                     </div>
                     <input type="submit" className="btn btn-lg btn-success" value="Add Transaction" />
                 </form>
