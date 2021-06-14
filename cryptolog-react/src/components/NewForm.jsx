@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import 
 
 const baseURL = 'http://localhost:3003'
 
@@ -21,8 +20,6 @@ export default class NewForm extends Component {
     }
 
     handleChange(event) {
-        console.log(event.currentTarget.id);
-        console.log(event.currentTarget.value);
         this.setState({ [event.currentTarget.id]: event.currentTarget.value })
       }
 
@@ -44,7 +41,7 @@ export default class NewForm extends Component {
     }).then(res => res.json())
         .then(resJson => {
             // Need to update this below
-        this.props.handleAddHoliday(resJson)
+        this.props.handleAddTransaction(resJson)
         this.setState({
             coin: '',
             quantity: '',
@@ -82,10 +79,10 @@ export default class NewForm extends Component {
                         <input onChange={ this.handleChange } type="date" className="form-control" name="transactionDate" id="transactionDate" />
                     </div>
                     <div className="mb-3">
-                        <label className="btn btn-outline-primary me-2" htmlFor="transactionType">Buy</label>
-                        <input onChange={ this.handleChange } type="radio" className="btn-check" name="transactionType" id="transactionType" value="buy" autoComplete="off" />
-                        <label className="btn btn-outline-primary" htmlFor="transactionType">Sell</label>
-                        <input onChange={ this.handleChange } type="radio" className="btn-check" name="transactionType" id="transactionType" value="sell" autoComplete="off" />
+                        <label htmlFor="transactionType">Buy</label>
+                        <input onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="buy" />
+                        <label htmlFor="transactionType">Sell</label>
+                        <input onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="sell" />
                     </div>
                     <input type="submit" className="btn btn-lg btn-success" value="Add Transaction" />
                 </form>
