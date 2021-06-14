@@ -1,1 +1,1 @@
-# ga_project3
+# Crypto Log Front End
