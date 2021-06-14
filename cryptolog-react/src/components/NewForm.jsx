@@ -41,7 +41,7 @@ export default class NewForm extends Component {
     }).then(res => res.json())
         .then(resJson => {
             // Need to update this below
-        this.props.handleAddHoliday(resJson)
+        this.props.handleAddTransaction(resJson)
         this.setState({
             coin: '',
             quantity: '',
