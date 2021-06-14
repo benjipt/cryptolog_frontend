@@ -1,36 +1,28 @@
 # Project 3 - Benjamin, Benji, Mitch
 
-## Features discussion
-Have experience w/:
-- Authentication
-- Multiple models
+## Crypto Transaction Log
 
-### Product Concept Brainstorm
-- Weather related
-    - Target by location
-- Directory of 3rd party api's
-- Crypto
-    - tracker
-    - Exchanges available by location
-- Events
-    - Ticketmaster api
-    - Features for price alerts
-- Covid related
-- Expanded Job/Application tracker
-- Expanded tool inventory checkout system
-- Expanded privacy-based referral networks
-- 
+### MVP
+User Stories:
+- Users can add purchase transactions of their respective currency unit at a specific price and time.
+- Users can add sell transactions and add the sell price at a specific price and time.
+- Users can update and delete any previously added transactions.
 
-#### Mitch's Notes Section
+Stretch Features:
+- User can see their current holdings as a reflection of previous transactions.
+- User can see the tax burden of transaction based on short-term vs. long-term capital gains (1 year).
 
-End of Mitch's Notes Section
+Models:
+- Users
+    - Username (email): String | (email?)
+    - Password: String
 
+- Transactions
+    - Coin: String (btc, eth)
+    - Exchange: String
+    - TransactionType: String (buy/sell)
+    - Quantity: Float or Number (0.3)
+    - perUnitPrice: Float or Number (250.00)
+    - transactionDate: Date
 
-#### Benjamin's Notes Section
-
-End of Benjamin's Notes Section
-
-
-#### Benji's Notes Section
-
-End of Benji's Notes Section
+All are required: true
