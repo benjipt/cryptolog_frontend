@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import 
 
 const baseURL = 'http://localhost:3003'
 
@@ -59,7 +60,7 @@ export default class NewForm extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={ this.handleSubmit }>
                     <div className="mb-3">
                         <label htmlFor="coin" className="form-label">Coin</label>
                         <input onChange={ this.handleChange } type="text" className="form-control" name="coin" id="coin" placeholder="BTC, ETH..." />
