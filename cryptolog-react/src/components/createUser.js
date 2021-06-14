@@ -8,6 +8,7 @@ class CreateUser extends Component{
                 password: '',
                 passwordCheck: '',
             }
+            this.handleChange = this.handleChange.bind(this)
     }
 
     // *** FUNCTIONS *** 
@@ -24,15 +25,15 @@ class CreateUser extends Component{
                 <form>
                     <div className="mb-3">
                         <label htmlFor="userName" className="form-label">User Name</label>
-                        <input type="email" className="form-control" name="userName" id="userName" placeholder="kasmo.kramer@hotmail.com" />
+                        <input onChange={this.handleChange} type="email" className="form-control" name="userName" id="userName" placeholder="kasmo.kramer@hotmail.com" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
-                        <input type="string" className="form-control" name="password" id="password" placeholder="bosco" />
+                        <input onChange={this.handleChange} type="string" className="form-control" name="password" id="password" placeholder="bosco" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="passwordCheck" className="form-label">Password</label>
-                        <input type="string" className="form-control" name="passwordCheck" id="passwordCheck" placeholder="bosco" />
+                        <input onChange={this.handleChange} type="string" className="form-control" name="passwordCheck" id="passwordCheck" placeholder="bosco" />
                     </div>
                     <input type='submit' value='Create New User'></input>
                 </form>
