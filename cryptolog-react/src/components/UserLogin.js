@@ -48,7 +48,7 @@ class UserLogin extends Component {
                 <form>
                     <div className="mb-3">
                         <label htmlFor="userNameLogin" className="form-label">User Name</label>
-                        <input onChange={this.handleChange} type="email" className="form-control" name="userNameLogin" id="userNameLogin" placeholder="kasmo.kramer@hotmail.com" />
+                        <input onChange={this.handleChange} type="email" className="form-control" name="userNameLogin" id="userNameLogin" placeholder="george.costanza@hotmail.com" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="passwordLogin" className="form-label">Password</label>

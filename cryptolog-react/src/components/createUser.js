@@ -25,7 +25,7 @@ class CreateUser extends Component{
                 <form>
                     <div className="mb-3">
                         <label htmlFor="userName" className="form-label">User Name</label>
-                        <input onChange={this.handleChange} type="email" className="form-control" name="userName" id="userName" placeholder="kasmo.kramer@hotmail.com" />
+                        <input onChange={this.handleChange} type="email" className="form-control" name="userName" id="userName" placeholder="george.costanza@hotmail.com" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
