@@ -40,8 +40,11 @@ export default class NewForm extends Component {
         }
     }).then(res => res.json())
         .then(resJson => {
-            // Need to update this below
         this.props.handleAddTransaction(resJson)
+        // Reset Form fields: https://www.freecodecamp.org/news/how-to-clear-input-values-of-dynamic-form-in-react/
+        Array.from(document.querySelectorAll("input")).forEach(
+            input => (input.value = "")
+          );
         this.setState({
             coin: '',
             quantity: '',
@@ -80,7 +83,7 @@ export default class NewForm extends Component {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="transactionType">Buy</label>
-                        <input onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="buy" />
+                        <input className="me-2" onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="buy" />
                         <label htmlFor="transactionType">Sell</label>
                         <input onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="sell" />
                     </div>
