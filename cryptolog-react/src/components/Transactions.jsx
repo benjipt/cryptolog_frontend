@@ -16,30 +16,18 @@ export default class Transactions extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>6/15/21</td>
-                            <td>Buy</td>
-                            <td>BTC</td>
-                            <td>0.05</td>
-                            <td>$37500</td>
-                            <td>Kraken</td>
-                        </tr>
-                        <tr>
-                            <td>6/14/21</td>
-                            <td>Sell</td>
-                            <td>ETH</td>
-                            <td>3.6</td>
-                            <td>$1450</td>
-                            <td>Gemini</td>
-                        </tr>
-                        <tr>
-                            <td>6/13/21</td>
-                            <td>Buy</td>
-                            <td>DOGE</td>
-                            <td>65.6</td>
-                            <td>$0.80</td>
-                            <td>Binance</td>
-                        </tr>
+                        { this.props.transactions.map(transaction => {
+                            return (
+                                <tr key={ transaction._id }>
+                                    <td>{ transaction.transactionDate }</td>
+                                    <td>{ transaction.transactionType }</td>
+                                    <td>{ transaction.coin }</td>
+                                    <td>{ transaction.quantity.$numberDecimal }</td>
+                                    <td>{ transaction.perUnitPrice.$numberDecimal }</td>
+                                    <td>{ transaction.exchange }</td>
+                                </tr>
+                            )
+                        }) }
                     </tbody>
                 </table>
             </div>
