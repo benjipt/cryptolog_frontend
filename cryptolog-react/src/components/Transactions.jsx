@@ -30,6 +30,8 @@ export default class Transactions extends Component {
                                     <td>{ transaction.quantity.$numberDecimal }</td>
                                     <td>{ transaction.perUnitPrice.$numberDecimal }</td>
                                     <td>{ transaction.exchange }</td>
+                                    <td><button className="btn btn-outline-secondary btn-sm">EDIT</button></td>
+                                    <td><button className="btn btn-outline-danger btn-sm">DELETE</button></td>
                                 </tr>
                             )
                         }) }
