@@ -47,7 +47,7 @@ export default class App extends Component {
     return (
       <div className="container text-center mt-4">
         <h1>Cryptolog</h1>
-        <button onClick={this.toggleForm}>Add New Transaction</button>
+        <button className="btn btn-primary mt-3" onClick={this.toggleForm}>Add New Transaction</button>
         { this.state.showForm &&
         <NewForm handleAddTransaction={ this.handleAddTransaction } />
         }

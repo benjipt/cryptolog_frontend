@@ -20,7 +20,7 @@ class CreateUser extends Component{
 
     render(){
         return(
-            <div>
+            <div className="mt-4">
                 <h2>CREATE A NEW USER</h2>
                 <form>
                     <div className="mb-3">
@@ -35,7 +35,9 @@ class CreateUser extends Component{
                         <label htmlFor="passwordCheck" className="form-label">Password</label>
                         <input onChange={this.handleChange} type="password" className="form-control" name="passwordCheck" id="passwordCheck" placeholder="bosco" />
                     </div>
-                    <input type='submit' value='Create New User'></input>
+                    <div className="d-grid gap-2">
+                        <input className="btn btn-primary" type='submit' value='Create New User' />
+                    </div>
                 </form>
             </div>
         )
