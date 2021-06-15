@@ -59,7 +59,7 @@ export default class NewForm extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mt-3">
                 <form onSubmit={ this.handleSubmit }>
                     <div className="mb-3">
                         <label htmlFor="coin" className="form-label">Coin</label>
@@ -82,9 +82,9 @@ export default class NewForm extends Component {
                         <input onChange={ this.handleChange } type="date" className="form-control" name="transactionDate" id="transactionDate" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="transactionType">Buy</label>
+                        <label className="me-2" htmlFor="transactionType">Buy</label>
                         <input className="me-2" onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="buy" />
-                        <label htmlFor="transactionType">Sell</label>
+                        <label className="me-2" htmlFor="transactionType">Sell</label>
                         <input onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="sell" />
                     </div>
                     <input type="submit" className="btn btn-lg btn-success" value="Add Transaction" />

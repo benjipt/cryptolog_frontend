@@ -54,7 +54,9 @@ class UserLogin extends Component {
                         <label htmlFor="passwordLogin" className="form-label">Password</label>
                         <input onChange={this.handleChange} type="password" className="form-control" name="passwordLogin" id="passwordLogin" placeholder="bosco" />
                     </div>
-                    <input type='submit' value='Login'></input>
+                    <div className="d-grid gap-2">
+                        <input className="btn btn-primary" type='submit' value='Login'></input>
+                    </div>
                 </form>
             </div>
 
