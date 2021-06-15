@@ -1,1 +1,0 @@
-# Crypto Log Front End
