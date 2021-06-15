@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import Transactions from './components/Transactions';
 import NewForm from './components/NewForm';
+
+const baseURL = 'http://localhost:3003'
 
 export default class App extends Component {
   constructor(props) {
@@ -11,12 +14,23 @@ export default class App extends Component {
     }
 
     this.handleAddTransaction = this.handleAddTransaction.bind(this);
+    this.getTransactions = this.getTransactions.bind(this);
+  }
+
+  componentDidMount() {
+    this.getTransactions()
   }
 
   toggleForm = () => {
     this.setState({
       showForm: !this.state.showForm
     })
+  }
+
+  getTransactions() {
+    fetch(baseURL + '/transactions')
+    .then(data => { return data.json()}, err => console.log(err))
+    .then(parsedData => this.setState({transactions: parsedData}), err => console.log(err))
   }
 
   handleAddTransaction(transaction) {
@@ -34,8 +48,8 @@ export default class App extends Component {
         <button onClick={this.toggleForm}>Add New Transaction</button>
         { this.state.showForm &&
         <NewForm handleAddTransaction={ this.handleAddTransaction } />
-
         }
+        <Transactions transactions={ this.state.transactions }/>
       </div>
     )
   }
