@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Transactions from './components/Transactions';
 import NewForm from './components/NewForm';
+import CreateUser from './components/CreateUser';
+import UserLogin from './components/UserLogin';
 
 const baseURL = 'http://localhost:3003'
 
@@ -50,6 +52,8 @@ export default class App extends Component {
         <NewForm handleAddTransaction={ this.handleAddTransaction } />
         }
         <Transactions transactions={ this.state.transactions }/>
+        <UserLogin />
+        <CreateUser />
       </div>
     )
   }
