@@ -45,6 +45,14 @@ class CreateUser extends Component{
             // })
             // })
             // .catch(error => console.log({ 'Error': error }))
+            // Reset Form fields: https://www.freecodecamp.org/news/how-to-clear-input-values-of-dynamic-form-in-react/
+            Array.from(document.querySelectorAll("input")).forEach(
+                input => (input.value = "")
+              );
+            this.setState({
+                userName: '',
+                password: '',
+            })
         }
 
 

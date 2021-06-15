@@ -25,6 +25,7 @@ export default class NewForm extends Component {
 
     handleSubmit(event) {
     event.preventDefault()
+    console.log(event.currentTarget)
     fetch(baseURL + '/transactions', {
         method: 'POST',
         body: JSON.stringify({
@@ -33,7 +34,8 @@ export default class NewForm extends Component {
             perUnitPrice: this.state.perUnitPrice,
             exchange: this.state.exchange,
             transactionDate: this.state.transactionDate,
-            transactionType: this.state.transactionType
+            transactionType: this.state.transactionType,
+            createdBy: 'test',
         }),
         headers: {
         'Content-Type': 'application/json'
@@ -51,7 +53,7 @@ export default class NewForm extends Component {
             perUnitPrice: '',
             exchange: '',
             transactionDate: '',
-            transactionType: ''
+            transactionType: '',
         })
         })
         .catch(error => console.log({ 'Error': error }))
