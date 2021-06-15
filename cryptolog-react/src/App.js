@@ -23,7 +23,7 @@ export default class App extends Component {
     const copyTransactions = [...this.state.transactions]
     copyTransactions.unshift(transaction)
     this.setState({
-      transactions: copyTransactions,
+      transactions: copyTransactions
     })
   }
 
