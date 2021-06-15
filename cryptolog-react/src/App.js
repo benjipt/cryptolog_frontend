@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Transactions from './components/Transactions';
 import NewForm from './components/NewForm';
 
 export default class App extends Component {
@@ -36,6 +37,7 @@ export default class App extends Component {
         <NewForm handleAddTransaction={ this.handleAddTransaction } />
 
         }
+        <Transactions />
       </div>
     )
   }
