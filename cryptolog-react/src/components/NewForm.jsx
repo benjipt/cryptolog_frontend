@@ -41,7 +41,7 @@ export default class NewForm extends Component {
     }).then(res => res.json())
         .then(resJson => {
         this.props.handleAddTransaction(resJson)
-        // Reset Form fields
+        // Reset Form fields: https://www.freecodecamp.org/news/how-to-clear-input-values-of-dynamic-form-in-react/
         Array.from(document.querySelectorAll("input")).forEach(
             input => (input.value = "")
           );
