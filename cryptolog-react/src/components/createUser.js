@@ -29,11 +29,11 @@ class CreateUser extends Component{
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
-                        <input onChange={this.handleChange} type="string" className="form-control" name="password" id="password" placeholder="bosco" />
+                        <input onChange={this.handleChange} type="password" className="form-control" name="password" id="password" placeholder="bosco" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="passwordCheck" className="form-label">Password</label>
-                        <input onChange={this.handleChange} type="string" className="form-control" name="passwordCheck" id="passwordCheck" placeholder="bosco" />
+                        <input onChange={this.handleChange} type="password" className="form-control" name="passwordCheck" id="passwordCheck" placeholder="bosco" />
                     </div>
                     <input type='submit' value='Create New User'></input>
                 </form>
