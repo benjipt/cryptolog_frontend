@@ -1,6 +1,13 @@
 import {Component} from 'react'
 
-const baseURL = 'http://localhost:3003'
+// const baseURL = 'http://localhost:3003'     //pre heroku
+let baseURL;
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://cryptolog-frontend.herokuapp.com/';
+}
 
 class UserLogin extends Component {
     constructor(props){
