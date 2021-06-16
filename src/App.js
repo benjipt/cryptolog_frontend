@@ -28,9 +28,9 @@ export default class App extends Component {
       showForm: false
     }
 
-    this.handleAddTransaction = this.handleAddTransaction.bind(this);
-    this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this);
-    this.getTransactions = this.getTransactions.bind(this);
+    this.handleAddTransaction = this.handleAddTransaction.bind(this)
+    this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this)
+    this.getTransactions = this.getTransactions.bind(this)
   }
 
   componentDidMount() {

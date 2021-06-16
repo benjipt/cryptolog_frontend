@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-// let baseURL;
+let baseURL;
 
-// if (process.env.NODE_ENV === 'development') {
-//   baseURL = 'http://localhost:3003';
-// } else {
-//   baseURL = 'https://cryptolog-api.herokuapp.com';
-// }
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://cryptolog-api.herokuapp.com';
+}
 
 export default class EditForm extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ export default class EditForm extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this)
-        // this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleUpdateTransaction = this.handleUpdateTransaction.bind(this)
     }
 
     componentDidMount(){
@@ -40,32 +40,32 @@ export default class EditForm extends Component {
         this.setState({ [event.currentTarget.id]: event.currentTarget.value })
       }
 
-    // handleSubmit(event) {
-    //     event.preventDefault()
-    //     fetch(`${baseURL}/transactions/${this.props.transaction._id}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //         'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             coin: this.state.coin,
-    //             quantity: this.state.quantity,
-    //             perUnitPrice: this.state.perUnitPrice,
-    //             exchange: this.state.exchange,
-    //             transactionDate: this.state.transactionDate,
-    //             transactionType: this.state.transactionType,
-    //         })
-    //             .then(res => res.json())
-    //             .then(resJson => {
-    //                 console.log(resJson);
-    //             })
-    //     })
-    // }
+    handleUpdateTransaction(event) {
+        fetch(`${baseURL}/transactions/${this.props.transaction._id}`, {
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+            coin: this.state.coin,
+            quantity: this.state.quantity,
+            perUnitPrice: this.state.perUnitPrice,
+            exchange: this.state.exchange,
+            transactionDate: this.state.transactionDate,
+            transactionType: this.state.transactionType
+            })
+        })
+        .then(res => res.json())
+        .then(resJson => {
+        console.log(resJson);
+        })
+    }
+
 
     render() {
         return (
             <div className="mt-3">
-                <form>
+                <form onSubmit={this.handleUpdateTransaction} >
                     <div className="mb-3">
                         <label htmlFor="coin" className="form-label">Coin</label>
                         <input onChange={ this.handleChange } type="text" className="form-control" name="coin" id="coin" value={ this.state.coin } />
