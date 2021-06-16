@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Transactions from './components/Transactions';
 import NewForm from './components/NewForm';
-import CreateUser from './components/CreateUser';
-import UserLogin from './components/UserLogin';
+// import CreateUser from './components/CreateUser';
+// import UserLogin from './components/UserLogin';
+import UserSection from './components/UserSection';
 
 const baseURL = 'http://localhost:3003'
 
@@ -48,14 +49,15 @@ export default class App extends Component {
   render() {
     return (
       <div className="container text-center mt-4">
+        <UserSection />
         <h1 className="display-1">Cryptolog</h1>
         <button className="btn btn-primary mt-3" onClick={this.toggleForm}>Add New Transaction</button>
         { this.state.showForm &&
         <NewForm handleAddTransaction={ this.handleAddTransaction } />
         }
         <Transactions transactions={ this.state.transactions }/>
-        <UserLogin />
-        <CreateUser />
+        {/* <UserLogin /> */}
+        {/* <CreateUser /> */}
       </div>
     )
   }
