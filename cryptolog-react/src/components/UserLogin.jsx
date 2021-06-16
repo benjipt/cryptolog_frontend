@@ -50,6 +50,7 @@ class UserLogin extends Component {
                 loggedIn: true,
                 userId: resJson._id,
             })
+            this.props.loggedIn()
         })
         .catch(error => console.log({ 'Error' : error}))
     }
