@@ -55,10 +55,10 @@ userLoggedOut = () => {
 
     render() {
         return(
-            <div>
-                <button className="btn btn-primary mt-3" onClick={this.toggleLogin} >LOGIN</button>
-                <button className="btn btn-primary mt-3" onClick={this.userLoggedOut} >LOG OUT</button> 
-                <button className="btn btn-primary mt-3" onClick={this.toggleCreateUser} >CREATE USER</button> <br/>
+            <div className="mt-3">
+                <button className="btn btn-primary me-2" onClick={this.toggleLogin} >LOGIN</button>
+                <button className="btn btn-primary me-2" onClick={this.userLoggedOut} >LOG OUT</button> 
+                <button className="btn btn-primary" onClick={this.toggleCreateUser} >CREATE USER</button> <br/>
                 {
                     this.state.showLogin && <UserLogin loggedIn={this.userLoggedIn} loggedOut={this.userLoggedOut}/>
                 }
