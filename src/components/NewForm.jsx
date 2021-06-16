@@ -7,7 +7,7 @@ let baseURL;
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
 } else {
-  baseURL = 'https://cryptolog-frontend.herokuapp.com/';
+  baseURL = 'https://cryptolog-api.herokuapp.com';
 }
 
 export default class NewForm extends Component {
