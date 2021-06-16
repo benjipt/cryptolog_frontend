@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
 import Moment from 'react-moment'
 
+const baseURL = 'http://localhost:3003'
+
 export default class Transactions extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             editTransaction: false,
-            editTransactionId: ''
+            transaction: {}
         }
 
-        this.onEditClick = this.onEditClick.bind(this)
+        this.handleEdit = this.handleEdit.bind(this)
     }
 
-    onEditClick(event) {
-        this.setState({
+    handleEdit(event) {
+        fetch(`${baseURL}/transactions/${event.target.id}`)
+        .then(data => { return data.json()}, err => console.log(err))
+        .then(parsedData => this.setState({
             editTransaction: !this.state.editTransaction,
-            editTransactionId: event.target.id
-        })
+            transaction: parsedData
+        }), err => console.log(err))
     }
 
     render() {
@@ -48,7 +52,7 @@ export default class Transactions extends Component {
                                     <td>{ transaction.quantity.$numberDecimal }</td>
                                     <td>{ transaction.perUnitPrice.$numberDecimal }</td>
                                     <td>{ transaction.exchange }</td>
-                                    <td><button onClick={ this.onEditClick } id={ transaction._id } className="btn btn-outline-secondary btn-sm">EDIT</button></td>
+                                    <td><button onClick={ this.handleEdit } id={ transaction._id } className="btn btn-outline-secondary btn-sm">EDIT</button></td>
                                     <td><button id={ transaction._id } className="btn btn-outline-danger btn-sm">DELETE</button></td>
                                 </tr>
                             )
