@@ -28,8 +28,9 @@ export default class App extends Component {
       showForm: false
     }
 
-    this.handleAddTransaction = this.handleAddTransaction.bind(this);
-    this.getTransactions = this.getTransactions.bind(this);
+    this.handleAddTransaction = this.handleAddTransaction.bind(this)
+    this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this)
+    this.getTransactions = this.getTransactions.bind(this)
   }
 
   componentDidMount() {
@@ -56,7 +57,22 @@ export default class App extends Component {
     })
   }
 
+  handleDeleteTransaction(event) {
+    fetch(`${baseURL}/transactions/${event.target.id}`, {
+      method: 'DELETE'
+    })
+      .then(res => {
+        if(res.status === 200) {
+          const findIndex = this.state.transactions.findIndex(transaction => transaction._id === event.target.id)
+          const copyTransactions = [...this.state.transactions]
+          copyTransactions.splice(findIndex, 1)
 
+          this.setState({
+            transactions: copyTransactions
+          })
+        }
+      })
+  }
 
   render() {
     return (
@@ -67,7 +83,9 @@ export default class App extends Component {
         { this.state.showForm &&
         <NewForm handleAddTransaction={ this.handleAddTransaction } />
         }
-        <Transactions transactions={ this.state.transactions }/>
+        <Transactions
+          transactions={this.state.transactions}
+          handleDeleteTransaction={this.handleDeleteTransaction} />
         {/* <UserLogin /> */}
         {/* <CreateUser /> */}
       </div>
