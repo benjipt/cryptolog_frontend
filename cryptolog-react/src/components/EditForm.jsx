@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Moment from 'react-moment'
 
 export default class EditForm extends Component {
     constructor(props) {
@@ -39,7 +38,7 @@ export default class EditForm extends Component {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exchange" className="form-label">Exchange Name</label>
-                        <input onChange={ this.handleChange } type="text" className="form-control" name="exchange" id="exchange" value={ this.props.exchange } value={ this.props.transaction.exchange } />
+                        <input onChange={ this.handleChange } type="text" className="form-control" name="exchange" id="exchange" value={ this.props.transaction.exchange } />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="transactionDate" className="form-label">Transaction Date</label>
