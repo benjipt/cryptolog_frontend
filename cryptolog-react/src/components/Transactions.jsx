@@ -2,6 +2,24 @@ import React, { Component } from 'react'
 import Moment from 'react-moment'
 
 export default class Transactions extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            editTransaction: false,
+            editTransactionId: ''
+        }
+
+        this.onEditClick = this.onEditClick.bind(this)
+    }
+
+    onEditClick(event) {
+        this.setState({
+            editTransaction: !this.state.editTransaction,
+            editTransactionId: event.target.id
+        })
+    }
+
     render() {
         return (
             <div className="container mt-5">
@@ -30,8 +48,8 @@ export default class Transactions extends Component {
                                     <td>{ transaction.quantity.$numberDecimal }</td>
                                     <td>{ transaction.perUnitPrice.$numberDecimal }</td>
                                     <td>{ transaction.exchange }</td>
-                                    <td><button className="btn btn-outline-secondary btn-sm">EDIT</button></td>
-                                    <td><button className="btn btn-outline-danger btn-sm">DELETE</button></td>
+                                    <td><button onClick={ this.onEditClick } id={ transaction._id } className="btn btn-outline-secondary btn-sm">EDIT</button></td>
+                                    <td><button id={ transaction._id } className="btn btn-outline-danger btn-sm">DELETE</button></td>
                                 </tr>
                             )
                         }) }
