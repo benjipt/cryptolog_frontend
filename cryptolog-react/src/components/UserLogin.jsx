@@ -8,10 +8,10 @@ class UserLogin extends Component {
         this.state = {
             userNameLogin: '',
             passwordLogin: '',
+            loggedIn: false,
         }
         this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     // *** FUNCTIONS ***
@@ -22,7 +22,16 @@ class UserLogin extends Component {
     handleSubmit(event) {
         console.log('logged in as ' + this.state.userNameLogin)
         event.preventDefault()
-        fetch(baseURL + '/sessions', {
+        console.log('front end line 24 ' + this.state.loggedIn)     //this is working
+        // if (this.state.userNameLogin !== ''){
+        //     console.log('user name is ' + this.state.userNameLogin)
+        //     this.setState({
+        //         loggedIn: true
+        //     })
+
+        // }
+        
+        fetch(baseURL + '/sessions' , {
             method: 'POST',
             body: JSON.stringify({
                 userName: this.state.userNameLogin,
@@ -31,7 +40,7 @@ class UserLogin extends Component {
             headers: {
                 'Content-Type' : 'application/json'
             }
-        }).then(res => res.json())
+        }).then(res => console.log('front end line 42 ' + res.body.session))
         // .then(resJson => {
         //     this.props.addinfunctionthatispulledfromappjs(resJson)
         //     Array.from(document.querySelectorAll('input')).forEach(input => (input.value =""));
@@ -40,7 +49,7 @@ class UserLogin extends Component {
         //         passwordLogin: '',
         //     })
         // })
-        // .catch(error => console.log({ 'Error' : error}))
+        .catch(error => console.log({ 'Error' : error}))
     }
 
 
@@ -48,7 +57,7 @@ class UserLogin extends Component {
         return(
             <div>
                 <h2>User Login</h2>
-                <form onSubmit={ this.handleSubmit }>
+                <form onSubmit={ this.handleSubmit } >
                     <div className="mb-3">
                         <label htmlFor="userNameLogin" className="form-label">User Name</label>
                         <input onChange={this.handleChange} type="email" className="form-control" name="userNameLogin" id="userNameLogin" placeholder="george.costanza@hotmail.com" />
