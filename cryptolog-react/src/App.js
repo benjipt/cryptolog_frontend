@@ -48,7 +48,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="container text-center mt-4">
-        <h1>Cryptolog</h1>
+        <h1 className="display-1">Cryptolog</h1>
         <button className="btn btn-primary mt-3" onClick={this.toggleForm}>Add New Transaction</button>
         { this.state.showForm &&
         <NewForm handleAddTransaction={ this.handleAddTransaction } />

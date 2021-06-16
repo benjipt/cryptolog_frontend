@@ -1,7 +1,30 @@
 import React, { Component } from 'react'
 import Moment from 'react-moment'
+import EditForm from './EditForm'
+
+const baseURL = 'http://localhost:3003'
 
 export default class Transactions extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            editTransaction: false,
+            transaction: {}
+        }
+
+        this.handleEdit = this.handleEdit.bind(this)
+    }
+
+    handleEdit(event) {
+        fetch(`${baseURL}/transactions/${event.target.id}`)
+        .then(data => { return data.json()}, err => console.log(err))
+        .then(parsedData => this.setState({
+            editTransaction: !this.state.editTransaction,
+            transaction: parsedData
+        }), err => console.log(err))
+    }
+
     render() {
         return (
             <div className="container mt-5">
@@ -30,11 +53,14 @@ export default class Transactions extends Component {
                                     <td>{ transaction.quantity.$numberDecimal }</td>
                                     <td>{ transaction.perUnitPrice.$numberDecimal }</td>
                                     <td>{ transaction.exchange }</td>
+                                    <td><button onClick={ this.handleEdit } id={ transaction._id } className="btn btn-outline-secondary btn-sm">EDIT</button></td>
+                                    <td><button id={ transaction._id } className="btn btn-outline-danger btn-sm">DELETE</button></td>
                                 </tr>
                             )
                         }) }
                     </tbody>
                 </table>
+                { this.state.editTransaction && <EditForm transaction={this.state.transaction} /> }
             </div>
         )
     }
