@@ -5,7 +5,19 @@ import NewForm from './components/NewForm';
 // import UserLogin from './components/UserLogin';
 import UserSection from './components/UserSection';
 
-const baseURL = 'http://localhost:3003'
+// const baseURL = 'http://localhost:3003'    //commented out while attempting to setup heroku
+
+let baseURL;
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://cryptolog-frontend.herokuapp.com/';
+}
+
+console.log('current base URL:', baseURL)
+
+
 
 export default class App extends Component {
   constructor(props) {

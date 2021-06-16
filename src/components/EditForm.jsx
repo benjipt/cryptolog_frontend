@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 
 // const baseURL = 'http://localhost:3003'
+let baseURL;
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://cryptolog-frontend.herokuapp.com/';
+}
 
 export default class EditForm extends Component {
     constructor(props) {
