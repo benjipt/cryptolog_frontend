@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+// const baseURL = 'http://localhost:3003'
+
 export default class EditForm extends Component {
     constructor(props) {
         super(props)
@@ -14,11 +16,45 @@ export default class EditForm extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this)
+        // this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    componentDidMount(){
+        this.setState({
+            coin: this.props.transaction.coin,
+            quantity: this.props.transaction.quantity.$numberDecimal,
+            perUnitPrice: this.props.transaction.perUnitPrice.$numberDecimal,
+            exchange: this.props.transaction.exchange,
+            transactionDate: this.props.transaction.transactionDate,
+            transactionType: this.props.transaction.transactionType
+        })
     }
 
     handleChange(event) {
         this.setState({ [event.currentTarget.id]: event.currentTarget.value })
       }
+
+    // handleSubmit(event) {
+    //     event.preventDefault()
+    //     fetch(`${baseURL}/transactions/${this.props.transaction._id}`, {
+    //         method: 'PUT',
+    //         headers: {
+    //         'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             coin: this.state.coin,
+    //             quantity: this.state.quantity,
+    //             perUnitPrice: this.state.perUnitPrice,
+    //             exchange: this.state.exchange,
+    //             transactionDate: this.state.transactionDate,
+    //             transactionType: this.state.transactionType,
+    //         })
+    //             .then(res => res.json())
+    //             .then(resJson => {
+    //                 console.log(resJson);
+    //             })
+    //     })
+    // }
 
     render() {
         return (
@@ -26,23 +62,23 @@ export default class EditForm extends Component {
                 <form>
                     <div className="mb-3">
                         <label htmlFor="coin" className="form-label">Coin</label>
-                        <input onChange={ this.handleChange } type="text" className="form-control" name="coin" id="coin" value={ this.props.transaction.coin } />
+                        <input onChange={ this.handleChange } type="text" className="form-control" name="coin" id="coin" value={ this.state.coin } />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="quantity" className="form-label">Quantity</label>
-                        <input onChange={ this.handleChange } type="number" step="any" className="form-control" name="quantity" id="quantity" value={ this.props.transaction.quantity.$numberDecimal }/>
+                        <input onChange={ this.handleChange } type="number" step="any" className="form-control" name="quantity" id="quantity" value={ this.state.quantity }/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="perUnitPrice" className="form-label">Price per Unit</label>
-                        <input onChange={ this.handleChange } type="number" step="0.01" className="form-control" name="perUnitPrice" id="perUnitPrice" value={ this.props.transaction.perUnitPrice.$numberDecimal }/>
+                        <input onChange={ this.handleChange } type="number" step="0.01" className="form-control" name="perUnitPrice" id="perUnitPrice" value={ this.state.perUnitPrice }/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exchange" className="form-label">Exchange Name</label>
-                        <input onChange={ this.handleChange } type="text" className="form-control" name="exchange" id="exchange" value={ this.props.transaction.exchange } />
+                        <input onChange={ this.handleChange } type="text" className="form-control" name="exchange" id="exchange" value={ this.state.exchange } />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="transactionDate" className="form-label">Transaction Date</label>
-                        <input onChange={ this.handleChange } type="date" className="form-control" name="transactionDate" id="transactionDate" value={ this.props.transaction.transactionDate } />
+                        <input onChange={ this.handleChange } type="date" className="form-control" name="transactionDate" id="transactionDate" />
                     </div>
                     <div className="mb-3">
                         <label className="me-2" htmlFor="transactionType">Buy</label>
