@@ -39,15 +39,18 @@ class UserLogin extends Component {
             headers: {
                 'Content-Type' : 'application/json'
             }
-        }).then(res => console.log('front end line 42 ' + res.body.session))
-        // .then(resJson => {
-        //     this.props.addinfunctionthatispulledfromappjs(resJson)
-        //     Array.from(document.querySelectorAll('input')).forEach(input => (input.value =""));
-        //     this.setState({
-        //         userNameLogin: '',
-        //         passwordLogin: '',
-        //     })
-        // })
+        }).then(res => res.json())
+        .then(resJson => {
+            // this.props.addinfunctionthatispulledfromappjs(resJson)
+            // Array.from(document.querySelectorAll('input')).forEach(input => (input.value =""));
+            console.log(resJson)
+            this.setState({
+                userNameLogin: '',
+                passwordLogin: '',
+                loggedIn: true,
+                userId: resJson._id,
+            })
+        })
         .catch(error => console.log({ 'Error' : error}))
     }
 
