@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Moment from 'react-moment'
+import EditForm from './EditForm'
 
 const baseURL = 'http://localhost:3003'
 
@@ -59,6 +60,7 @@ export default class Transactions extends Component {
                         }) }
                     </tbody>
                 </table>
+                { this.state.editTransaction && <EditForm transaction={this.state.transaction} /> }
             </div>
         )
     }
