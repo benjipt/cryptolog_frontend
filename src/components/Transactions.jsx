@@ -37,11 +37,11 @@ export default class Transactions extends Component {
                 <table className="table table-borderless">
                     <thead>
                         <tr>
-                            <th>Transaction Date</th>
-                            <th>Transaction Type</th>
+                            <th>Date</th>
+                            <th>Type</th>
                             <th>Coin</th>
-                            <th>Quantity</th>
-                            <th>Price per Unit</th>
+                            <th>Qty</th>
+                            <th>Price</th>
                             <th>Exchange</th>
                         </tr>
                     </thead>
