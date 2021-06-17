@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700;900&display=swap');
 
 body {
   margin: 0;
@@ -17,12 +18,21 @@ code {
 .body-style{
   background-color: #edf6f9;
   color: #2b2d42;
+  font-family: 'Source Code Pro', monospace;
 }
 
 h1 {
   font-family: 'Major Mono Display', monospace;
 }
 
-.transactionList {
-  border: green 3px solid;
+
+form label  {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
 }
+
+.transactionList {
+  border: #2b2d42 3px solid;
+}
+

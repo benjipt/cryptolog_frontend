@@ -106,7 +106,7 @@ export default class App extends Component {
           loggedIn={this.state.loggedIn} />
 
         { this.state.loggedIn &&
-        <button className="btn btn-primary mt-3" onClick={this.toggleForm}>Add New Transaction</button> }
+        <button className="btn btn-primary mt-3" onClick={this.toggleForm}>Add Transaction</button> }
         
 
         { this.state.showForm &&

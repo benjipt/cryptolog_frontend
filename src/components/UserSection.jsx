@@ -70,13 +70,13 @@ class UserSection extends Component{
         return(
             <div className="mt-3">
                 { this.state.loggedIn && 
-                <h5>Logged in as: {this.state.userName} </h5>}
+                <h5 className="mb-4">Logged in as: {this.state.userName} </h5>}
                 { !this.state.loggedIn &&
                 <button className="btn btn-primary me-2" onClick={this.toggleLoginForm}>LOGIN</button> }
                 { this.state.loggedIn && 
                 <button className="btn btn-primary me-2" onClick={this.handleLogOut} >LOG OUT</button> }
                 { !this.state.loggedIn &&
-                <button className="btn btn-primary" onClick={this.toggleCreateUserForm} >CREATE USER</button> }
+                <button className="btn btn-primary" onClick={this.toggleCreateUserForm} >SIGN UP</button> }
                 {
                     this.state.showLoginForm && 
                     <UserLogin 
