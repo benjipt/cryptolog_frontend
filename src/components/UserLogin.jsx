@@ -15,6 +15,7 @@ class UserLogin extends Component {
             userNameLogin: '',
             passwordLogin: '',
             loggedIn: false,
+            passwordMatch: true
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -26,6 +27,7 @@ class UserLogin extends Component {
     }
 
     handleSubmit(event) {
+        console.log('logged in as ' + this.state.userNameLogin)
         event.preventDefault()
         console.log('front end line 24 ' + this.state.loggedIn)     //this is working
         // if (this.state.userNameLogin !== ''){
@@ -61,6 +63,10 @@ class UserLogin extends Component {
             this.props.toggleLoginForm(resJson._id , resJson.userName)
         })
         .catch(error => console.log({ 'Error' : error}))
+        console.log('incorrect pass')
+        this.setState({
+            passwordMatch: !this.state.passwordMatch
+       })
     }
 
 
@@ -68,6 +74,7 @@ class UserLogin extends Component {
         return(
             <div className="mt-4 mb-4">
                 <h2>User Login</h2>
+                { this.state.passwordMatch ? null : <h5>PASSWORD DOES NOT MATCH</h5> }
                 <form onSubmit={ this.handleSubmit } >
                     <div className="mb-3">
                         <label htmlFor="userNameLogin" className="form-label">User Name</label>
@@ -76,6 +83,7 @@ class UserLogin extends Component {
                     <div className="mb-3">
                         <label htmlFor="passwordLogin" className="form-label">Password</label>
                         <input onChange={this.handleChange} type="password" className="form-control" name="passwordLogin" id="passwordLogin" placeholder="bosco" />
+                    
                     </div>
                     <div className="d-grid gap-2">
                         <input className="btn btn-primary" type='submit' value='Login'></input>

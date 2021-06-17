@@ -21,6 +21,7 @@ export default class Transactions extends Component {
         }
 
         this.handleEdit = this.handleEdit.bind(this)
+        this.toggleEditForm = this.toggleEditForm.bind(this)
     }
 
     handleEdit(event) {
@@ -30,6 +31,10 @@ export default class Transactions extends Component {
             editTransaction: !this.state.editTransaction,
             transaction: parsedData
         }), err => console.log(err))
+    }
+
+    toggleEditForm() {
+        this.setState({ editTransaction: !this.state.editTransaction })
     }
 
     render() {
@@ -74,7 +79,9 @@ export default class Transactions extends Component {
                     </tbody>
                 </table>
                 { this.state.editTransaction && 
-                <EditForm transaction={this.state.transaction} /> }
+                <EditForm 
+                    transaction={this.state.transaction}
+                    toggleEditForm={this.toggleEditForm} /> }
             </div>
         )
     }

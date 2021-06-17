@@ -41,6 +41,7 @@ export default class EditForm extends Component {
       }
 
     handleUpdateTransaction(event) {
+        event.preventDefault()
         fetch(`${baseURL}/transactions/${this.props.transaction._id}`, {
             method: 'PUT',
             headers: {
@@ -57,7 +58,8 @@ export default class EditForm extends Component {
         })
         .then(res => res.json())
         .then(resJson => {
-        console.log(resJson);
+        console.log(resJson)
+        this.props.toggleEditForm()
         })
     }
 
