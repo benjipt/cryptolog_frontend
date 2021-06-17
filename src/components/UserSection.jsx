@@ -36,7 +36,7 @@ class UserSection extends Component{
 
     toggleCreateUserForm = () => {
         this.setState({
-            showCreateUser: !this.state.showCreateUserForm
+            showCreateUserForm: !this.state.showCreateUserForm,
         })
     }
 
@@ -61,9 +61,10 @@ class UserSection extends Component{
                         toggleLoginForm={this.toggleLoginForm} />
                 }
                 {
-                    this.state.showCreateUser &&
+                    this.state.showCreateUserForm &&
                     <CreateUser
                         toggleCreateUser={this.toggleCreateUserForm}
+
                     />
                 }
             </div>
