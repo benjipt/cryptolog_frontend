@@ -63,6 +63,7 @@ export default class NewForm extends Component {
             transactionDate: '',
             transactionType: '',
         })
+        this.props.toggleForm()
         })
         .catch(error => console.log({ 'Error': error }))
     }

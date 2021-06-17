@@ -31,6 +31,7 @@ export default class App extends Component {
     this.handleAddTransaction = this.handleAddTransaction.bind(this)
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
+    this.toggleForm = this.toggleForm.bind(this)
   }
 
   componentDidMount() {
@@ -81,7 +82,9 @@ export default class App extends Component {
         <UserSection />
         <button className="btn btn-primary mt-3" onClick={this.toggleForm}>Add New Transaction</button>
         { this.state.showForm &&
-        <NewForm handleAddTransaction={ this.handleAddTransaction } />
+        <NewForm 
+          handleAddTransaction={this.handleAddTransaction}
+          toggleForm={this.toggleForm} />
         }
         <Transactions
           transactions={this.state.transactions}

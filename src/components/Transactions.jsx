@@ -19,6 +19,7 @@ export default class Transactions extends Component {
             editTransaction: false,
             transaction: {}
         }
+
         this.handleEdit = this.handleEdit.bind(this)
     }
 
@@ -72,7 +73,8 @@ export default class Transactions extends Component {
                         }) }
                     </tbody>
                 </table>
-                { this.state.editTransaction && <EditForm transaction={this.state.transaction} /> }
+                { this.state.editTransaction && 
+                <EditForm transaction={this.state.transaction} /> }
             </div>
         )
     }
