@@ -30,13 +30,6 @@ class UserLogin extends Component {
         console.log('logged in as ' + this.state.userNameLogin)
         event.preventDefault()
         console.log('front end line 24 ' + this.state.loggedIn)     //this is working
-        // if (this.state.userNameLogin !== ''){
-        //     console.log('user name is ' + this.state.userNameLogin)
-        //     this.setState({
-        //         loggedIn: true
-        //     })
-
-        // }
         
         fetch(baseURL + '/sessions' , {
             method: 'POST',
