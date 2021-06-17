@@ -26,6 +26,7 @@ class UserLogin extends Component {
     }
 
     handleSubmit(event) {
+        console.log('logged in as ' + this.state.userNameLogin)
         event.preventDefault()
         console.log('front end line 24 ' + this.state.loggedIn)     //this is working
         // if (this.state.userNameLogin !== ''){
