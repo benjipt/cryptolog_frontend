@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import Transactions from './components/Transactions';
 import NewForm from './components/NewForm';
-// import CreateUser from './components/CreateUser';
-// import UserLogin from './components/UserLogin';
 import UserSection from './components/UserSection';
-
-// const baseURL = 'http://localhost:3003'    //commented out while attempting to setup heroku
 
 let baseURL;
 
@@ -37,7 +33,6 @@ export default class App extends Component {
     this.handleAddTransaction = this.handleAddTransaction.bind(this)
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
-    // this.userLoggedIn = this.userLoggedIn.bind(this)  // used to pull values from user login
     this.toggleForm = this.toggleForm.bind(this)
   }
 
@@ -88,14 +83,6 @@ export default class App extends Component {
       })
   }
 
-  // userLoggedIn = (id , name) => {   //used to pull values from user login, this wasnt working for me (mitch)
-  //   this.setState({
-  //       userLoggedIn: true,
-  //       userID : id,
-  //       userName : name,
-  //   })
-  // } 
-
   render() {
     return (
 
@@ -119,8 +106,6 @@ export default class App extends Component {
         <Transactions
           transactions={this.state.transactions}
           handleDeleteTransaction={this.handleDeleteTransaction} /> }
-        {/* <UserLogin /> */}
-        {/* <CreateUser /> */}
       </div>
     )
   }

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-// const baseURL = 'http://localhost:3003'      //pre heroku
-
 let baseURL;
 
 if (process.env.NODE_ENV === 'development') {

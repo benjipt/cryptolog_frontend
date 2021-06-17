@@ -2,15 +2,6 @@ import {Component} from 'react'
 import UserLogin from './UserLogin';
 import CreateUser from './CreateUser'
 
-// const baseURL = 'http://localhost:3003'
-
-// let baseURL;
-
-// if (process.env.NODE_ENV === 'development') {
-//   baseURL = 'http://localhost:3003';
-// } else {
-//   baseURL = 'https://cryptolog-api.herokuapp.com';
-// }
 
 class UserSection extends Component{
     constructor(props) {
@@ -31,11 +22,6 @@ class UserSection extends Component{
     // *** FUNCTIONS ***
     toggleLoginForm = (id , userName) => {
         let showCreateForm = false
-        // if(this.state.showCreateUserForm) {
-        //     showCreateForm = false
-        // } else {
-        //     showCreateForm = false
-        // }
         this.setState({
             loggedIn: this.props.loggedIn,
             showLoginForm: !this.state.showLoginForm,    //MM: commented out for testing purposes
@@ -59,12 +45,6 @@ class UserSection extends Component{
          })
         this.props.toggleLoggedIn()
     }
-
-    // setCreateUserStateToFalse(){
-    //     this.setState({
-    //         showCreateUserForm: false,
-    //     })
-    // }
 
     render() {
         return(

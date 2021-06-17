@@ -42,7 +42,6 @@ class UserLogin extends Component {
             }
         }).then(res => res.json())
         .then(resJson => {
-            // this.props.addinfunctionthatispulledfromappjs(resJson)
             Array.from(document.querySelectorAll('input')).forEach(input => (input.value =""));
             console.log(resJson)
             this.setState({
