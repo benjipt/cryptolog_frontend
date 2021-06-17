@@ -19,6 +19,8 @@ class UserSection extends Component{
             loggedIn: false,
             showLoginForm: false,
             showCreateUserForm : false,
+            userName: '',
+            userID: '',
         }
 
         this.toggleLoginForm = this.toggleLoginForm.bind(this)
@@ -27,27 +29,35 @@ class UserSection extends Component{
     }
 
     // *** FUNCTIONS ***
-    toggleLoginForm = () => {
+    toggleLoginForm = (id , userName) => {
         this.setState({
             loggedIn: this.props.loggedIn,
-            showLoginForm: !this.state.showLoginForm
+            showLoginForm: !this.state.showLoginForm,    //MM: commented out for testing purposes
+            userName: userName,
+            userID: id,
         })
     }
 
     toggleCreateUserForm = () => {
         this.setState({
-            showCreateUser: !this.state.showCreateUserForm
+            showCreateUserForm: !this.state.showCreateUserForm,
         })
     }
 
     handleLogOut() {
-        this.setState({ loggedIn: false })
+        this.setState({ 
+            loggedIn: false,
+            userID: '',
+            userName: '',
+         })
         this.props.toggleLoggedIn()
     }
 
     render() {
         return(
             <div className="mt-3">
+                { this.state.loggedIn && 
+                <h5>Logged in as: {this.state.userName} </h5>}
                 { !this.state.loggedIn &&
                 <button className="btn btn-primary me-2" onClick={this.toggleLoginForm}>LOGIN</button> }
                 { this.state.loggedIn && 
@@ -61,9 +71,10 @@ class UserSection extends Component{
                         toggleLoginForm={this.toggleLoginForm} />
                 }
                 {
-                    this.state.showCreateUser &&
+                    this.state.showCreateUserForm &&
                     <CreateUser
                         toggleCreateUser={this.toggleCreateUserForm}
+
                     />
                 }
             </div>

@@ -49,16 +49,17 @@ class UserLogin extends Component {
         }).then(res => res.json())
         .then(resJson => {
             // this.props.addinfunctionthatispulledfromappjs(resJson)
-            // Array.from(document.querySelectorAll('input')).forEach(input => (input.value =""));
+            Array.from(document.querySelectorAll('input')).forEach(input => (input.value =""));
             console.log(resJson)
             this.setState({
                 userNameLogin: '',
                 passwordLogin: '',
                 loggedIn: true,
                 userId: resJson._id,
+                userName: resJson.userName,
             })
-            this.props.toggleLoggedIn()
-            this.props.toggleLoginForm()
+            this.props.toggleLoggedIn()         //MM: I dont think this is used, may have been from my old code
+            this.props.toggleLoginForm(resJson._id , resJson.userName)
         })
         .catch(error => console.log({ 'Error' : error}))
     }
