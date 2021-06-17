@@ -45,7 +45,11 @@ class UserSection extends Component{
     }
 
     handleLogOut() {
-        this.setState({ loggedIn: false })
+        this.setState({ 
+            loggedIn: false,
+            userID: '',
+            userName: '',
+         })
         this.props.toggleLoggedIn()
     }
 
