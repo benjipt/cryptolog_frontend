@@ -1,4 +1,5 @@
 import {Component} from 'react'
+
 // const baseURL = 'http://localhost:3003'      //pre heroku
 
 let baseURL;
@@ -17,6 +18,7 @@ class CreateUser extends Component{
                 userName: '',
                 password: '',
                 passwordCheck: '',
+                passwordsMatch: true,
             }
         
         this.handleChange = this.handleChange.bind(this)
@@ -26,45 +28,56 @@ class CreateUser extends Component{
     // *** FUNCTIONS *** 
     handleChange(event){
         this.setState({ [event.currentTarget.id] : event.currentTarget.value })
+        setTimeout(() => {
+            if (this.state.password === this.state.passwordCheck) {
+                this.setState({
+                    passwordsMatch: true
+                })
+            } else { this.setState({ passwordsMatch: false })}
+        }, 100)
     }
 
     handleSubmit(event) {
         event.preventDefault()
-        let pw1 = this.state.password
-        let pw2 = this.state.passwordCheck
-        // need some type of if statement to allow the fetch request to happen, not sure what to do if the if statement fails?
-        fetch(baseURL + '/users', {
-            method: 'POST',
-            body: JSON.stringify({
-                userName: this.state.userName,
-                userPassword: this.state.password,
-            }),
-            headers: {
-            'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-            // .then(resJson => {
-            // this.props.handleAddTransaction(resJson)
-            // // Reset Form fields: https://www.freecodecamp.org/news/how-to-clear-input-values-of-dynamic-form-in-react/
-            // Array.from(document.querySelectorAll("input")).forEach(
-            //     input => (input.value = "")
-            //   );
-            // this.setState({
-            //     userName: '',
-            //     password: '',
-                
-            // })
-            // })
-            // .catch(error => console.log({ 'Error': error }))
-            // Reset Form fields: https://www.freecodecamp.org/news/how-to-clear-input-values-of-dynamic-form-in-react/
-            Array.from(document.querySelectorAll("input")).forEach(
-                input => (input.value = "")
-              );
-            this.setState({
-                userName: '',
-                password: '',
-            })
-            this.props.toggleCreateUser()
+        if(this.state.password === this.state.passwordCheck) {
+            fetch(baseURL + '/users', {
+                method: 'POST',
+                body: JSON.stringify({
+                    userName: this.state.userName,
+                    userPassword: this.state.password,
+                }),
+                headers: {
+                'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+                // .then(resJson => {
+                // this.props.handleAddTransaction(resJson)
+                // // Reset Form fields: https://www.freecodecamp.org/news/how-to-clear-input-values-of-dynamic-form-in-react/
+                // Array.from(document.querySelectorAll("input")).forEach(
+                //     input => (input.value = "")
+                //   );
+                // this.setState({
+                //     userName: '',
+                //     password: '',
+                    
+                // })
+                // })
+                // .catch(error => console.log({ 'Error': error }))
+                // Reset Form fields: https://www.freecodecamp.org/news/how-to-clear-input-values-of-dynamic-form-in-react/
+                Array.from(document.querySelectorAll("input")).forEach(
+                    input => (input.value = "")
+                  );
+                this.setState({
+                    userName: '',
+                    password: '',
+                })
+                this.props.toggleCreateUser()
+            
+            } else(
+                this.setState({ passwordsMatch: false })
+                // console.log('passwords do not match')
+            )
+       
         }
 
 
@@ -73,6 +86,9 @@ class CreateUser extends Component{
         return(
             <div className="mt-4">
                 <h2>CREATE A NEW USER</h2>
+                { !this.state.passwordsMatch &&
+                    <h5>PASSWORDS DO NOT MATCH!</h5>
+                }
                 <form onSubmit={ this.handleSubmit }>
                     <div className="mb-3">
                         <label htmlFor="userName" className="form-label">User Name</label>
