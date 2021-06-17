@@ -98,7 +98,7 @@ export default class NewForm extends Component {
                         <label className="me-2" htmlFor="transactionType">Sell</label>
                         <input onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="Sell" />
                     </div>
-                    <div className="text-center">
+                    <div className="d-grid gap-2">
                         <input type="submit" className="btn btn-lg btn-success" value="Submit" />
                     </div>
                 </form>
