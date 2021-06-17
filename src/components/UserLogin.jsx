@@ -49,15 +49,17 @@ class UserLogin extends Component {
         }).then(res => res.json())
         .then(resJson => {
             // this.props.addinfunctionthatispulledfromappjs(resJson)
-            // Array.from(document.querySelectorAll('input')).forEach(input => (input.value =""));
+            Array.from(document.querySelectorAll('input')).forEach(input => (input.value =""));
             console.log(resJson)
             this.setState({
                 userNameLogin: '',
                 passwordLogin: '',
                 loggedIn: true,
                 userId: resJson._id,
+                userName: resJson.userName,
             })
-            this.props.loggedIn()
+            this.props.loggedIn(resJson._id , resJson.userName)
+            this.props.toggleLogIn()     // this is used to automatically close the login window
         })
         .catch(error => console.log({ 'Error' : error}))
     }

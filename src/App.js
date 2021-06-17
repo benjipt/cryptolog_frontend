@@ -25,12 +25,17 @@ export default class App extends Component {
 
     this.state = {
       transactions: [],
-      showForm: false
+      showForm: false,
+      userLoggedIn: false,
+      userID : '',
+      userName : '',
+
     }
 
     this.handleAddTransaction = this.handleAddTransaction.bind(this)
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
+    // this.userLoggedIn = this.userLoggedIn.bind(this)  // used to pull values from user login
   }
 
   componentDidMount() {
@@ -74,11 +79,19 @@ export default class App extends Component {
       })
   }
 
+  // userLoggedIn = (id , name) => {   //used to pull values from user login, this wasnt working for me (mitch)
+  //   this.setState({
+  //       userLoggedIn: true,
+  //       userID : id,
+  //       userName : name,
+  //   })
+  // } 
+
   render() {
     return (
       <div className="container text-center mt-4">
         <h1 className="display-1">Cryptolog</h1>
-        <UserSection />
+        <UserSection userLoggiedIn={this.userLoggedIn}/>
         <button className="btn btn-primary mt-3" onClick={this.toggleForm}>Add New Transaction</button>
         { this.state.showForm &&
         <NewForm handleAddTransaction={ this.handleAddTransaction } />

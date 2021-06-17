@@ -19,8 +19,11 @@ class UserSection extends Component{
             loggedIn : false,
             showLogin : false,
             showCreateUser : false,
+            userName: '',
+            userID: '',
+            // userLoggedIn: props.userLoggedIn,
         }
-        this.userLoggedIn = this.userLoggedIn.bind(this)
+        // this.userLoggedIn = this.userLoggedIn.bind(this)
         this.userLoggedOut = this.userLoggedOut.bind(this)
     }
 
@@ -39,9 +42,11 @@ toggleCreateUser = () => {
 }
 
 // used with login button to set state for conditional, need to verify that it doesnt set change state if incorrect login
-userLoggedIn = () => {
+userLoggedIn = (id , name) => {
     this.setState({
-        loggedIn: true
+        loggedIn: true,
+        userID : id,
+        userName : name,
     })
 }
 
@@ -59,8 +64,9 @@ userLoggedOut = () => {
                 <button className="btn btn-primary me-2" onClick={this.toggleLogin} >LOGIN</button>
                 <button className="btn btn-primary me-2" onClick={this.userLoggedOut} >LOG OUT</button> 
                 <button className="btn btn-primary" onClick={this.toggleCreateUser} >CREATE USER</button> <br/>
+                <h3>{this.state.userName}</h3>
                 {
-                    this.state.showLogin && <UserLogin loggedIn={this.userLoggedIn} loggedOut={this.userLoggedOut}/>
+                    this.state.showLogin && <UserLogin userLoggedIn ={this.props.userLoggedIn} toggleLogIn={this.toggleLogin} loggedIn={this.userLoggedIn} loggedOut={this.userLoggedOut}/>
                 }
                 {
                     this.state.showCreateUser && <CreateUser />
