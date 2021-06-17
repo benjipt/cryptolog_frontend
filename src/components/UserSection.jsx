@@ -20,8 +20,10 @@ class UserSection extends Component{
             showLogin : false,
             showCreateUser : false,
         }
+        
         this.userLoggedIn = this.userLoggedIn.bind(this)
         this.userLoggedOut = this.userLoggedOut.bind(this)
+        this.toggleLogin = this.toggleLogin.bind(this)
     }
 
 
@@ -62,7 +64,11 @@ userLoggedOut = () => {
                 <button className="btn btn-primary me-2" onClick={this.userLoggedOut} >LOG OUT</button> }
                 <button className="btn btn-primary" onClick={this.toggleCreateUser} >CREATE USER</button> <br/>
                 {
-                    this.state.showLogin && <UserLogin loggedIn={this.userLoggedIn} loggedOut={this.userLoggedOut}/>
+                    this.state.showLogin && 
+                    <UserLogin 
+                        loggedIn={this.userLoggedIn}
+                        loggedOut={this.userLoggedOut}
+                        toggleLogin={this.toggleLogin} />
                 }
                 {
                     this.state.showCreateUser && <CreateUser />

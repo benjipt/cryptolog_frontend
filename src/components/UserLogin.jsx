@@ -1,6 +1,5 @@
 import {Component} from 'react'
 
-// const baseURL = 'http://localhost:3003'     //pre heroku
 let baseURL;
 
 if (process.env.NODE_ENV === 'development') {
@@ -58,6 +57,7 @@ class UserLogin extends Component {
                 userId: resJson._id,
             })
             this.props.loggedIn()
+            this.props.toggleLogin()
         })
         .catch(error => console.log({ 'Error' : error}))
     }
@@ -65,7 +65,7 @@ class UserLogin extends Component {
 
     render() {
         return(
-            <div>
+            <div className="mt-4">
                 <h2>User Login</h2>
                 <form onSubmit={ this.handleSubmit } >
                     <div className="mb-3">
