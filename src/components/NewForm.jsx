@@ -94,9 +94,9 @@ export default class NewForm extends Component {
                     </div>
                     <div className="mb-3">
                         <label className="me-2" htmlFor="transactionType">Buy</label>
-                        <input className="me-2" onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="buy" />
+                        <input className="me-2" onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="Buy" />
                         <label className="me-2" htmlFor="transactionType">Sell</label>
-                        <input onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="sell" />
+                        <input onChange={ this.handleChange } type="radio" name="transactionType" id="transactionType" value="Sell" />
                     </div>
                     <input type="submit" className="btn btn-lg btn-success" value="Add Transaction" />
                 </form>
