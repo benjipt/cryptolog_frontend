@@ -16,60 +16,55 @@ class UserSection extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            loggedIn : false,
-            showLogin : false,
-            showCreateUser : false,
-            userName: '',
-            userID: '',
-            // userLoggedIn: props.userLoggedIn,
+            loggedIn: false,
+            showLoginForm: false,
+            showCreateUserForm : false,
         }
-        // this.userLoggedIn = this.userLoggedIn.bind(this)
-        this.userLoggedOut = this.userLoggedOut.bind(this)
+
+        this.toggleLoginForm = this.toggleLoginForm.bind(this)
+        this.toggleCreateUserForm = this.toggleCreateUserForm.bind(this)
+        this.handleLogOut = this.handleLogOut.bind(this)
     }
 
+    // *** FUNCTIONS ***
+    toggleLoginForm = () => {
+        this.setState({
+            loggedIn: this.props.loggedIn,
+            showLoginForm: !this.state.showLoginForm
+        })
+    }
 
-// *** FUNCTIONS ***
-toggleLogin = () => {
-    this.setState({
-        showLogin: !this.state.showLogin
-    })
-}
+    toggleCreateUserForm = () => {
+        this.setState({
+            showCreateUser: !this.state.showCreateUserForm
+        })
+    }
 
-toggleCreateUser = () => {
-    this.setState({
-        showCreateUser: !this.state.showCreateUser
-    })
-}
-
-// used with login button to set state for conditional, need to verify that it doesnt set change state if incorrect login
-userLoggedIn = (id , name) => {
-    this.setState({
-        loggedIn: true,
-        userID : id,
-        userName : name,
-    })
-}
-
-//used with logout button to set state for conditional
-userLoggedOut = () => {
-    console.log('logout clicked')
-    this.setState({
-        loggedIn: false
-    })
-}
+    handleLogOut() {
+        this.setState({ loggedIn: false })
+        this.props.toggleLoggedIn()
+    }
 
     render() {
         return(
             <div className="mt-3">
-                <button className="btn btn-primary me-2" onClick={this.toggleLogin} >LOGIN</button>
-                <button className="btn btn-primary me-2" onClick={this.userLoggedOut} >LOG OUT</button> 
-                <button className="btn btn-primary" onClick={this.toggleCreateUser} >CREATE USER</button> <br/>
-                <h3>{this.state.userName}</h3>
+                { !this.state.loggedIn &&
+                <button className="btn btn-primary me-2" onClick={this.toggleLoginForm}>LOGIN</button> }
+                { this.state.loggedIn && 
+                <button className="btn btn-primary me-2" onClick={this.handleLogOut} >LOG OUT</button> }
+                { !this.state.loggedIn &&
+                <button className="btn btn-primary" onClick={this.toggleCreateUserForm} >CREATE USER</button> }
                 {
-                    this.state.showLogin && <UserLogin userLoggedIn ={this.props.userLoggedIn} toggleLogIn={this.toggleLogin} loggedIn={this.userLoggedIn} loggedOut={this.userLoggedOut}/>
+                    this.state.showLoginForm && 
+                    <UserLogin 
+                        toggleLoggedIn={this.props.toggleLoggedIn}
+                        toggleLoginForm={this.toggleLoginForm} />
                 }
                 {
-                    this.state.showCreateUser && <CreateUser />
+                    this.state.showCreateUser &&
+                    <CreateUser
+                        toggleCreateUser={this.toggleCreateUserForm}
+                    />
                 }
             </div>
         )

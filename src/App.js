@@ -24,6 +24,7 @@ export default class App extends Component {
     super(props)
 
     this.state = {
+      loggedIn: false,
       transactions: [],
       showForm: false,
       userLoggedIn: false,
@@ -32,14 +33,22 @@ export default class App extends Component {
 
     }
 
+    this.toggleLoggedIn = this.toggleLoggedIn.bind(this)
     this.handleAddTransaction = this.handleAddTransaction.bind(this)
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
     // this.userLoggedIn = this.userLoggedIn.bind(this)  // used to pull values from user login
+    this.toggleForm = this.toggleForm.bind(this)
   }
 
   componentDidMount() {
     this.getTransactions()
+  }
+
+  toggleLoggedIn = () => {
+    this.setState({
+        loggedIn: !this.state.loggedIn
+    })
   }
 
   toggleForm = () => {
@@ -89,16 +98,27 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="container text-center mt-4">
-        <h1 className="display-1">Cryptolog</h1>
-        <UserSection userLoggiedIn={this.userLoggedIn}/>
-        <button className="btn btn-primary mt-3" onClick={this.toggleForm}>Add New Transaction</button>
+
+      <div className="container text-center mt-4 mb-4">
+        <h1 className="display-1">CRYPTOLOG</h1>
+        <UserSection
+          toggleLoggedIn={this.toggleLoggedIn}
+          loggedIn={this.state.loggedIn} />
+
+        { this.state.loggedIn &&
+        <button className="btn btn-primary mt-3" onClick={this.toggleForm}>Add New Transaction</button> }
+        
+
         { this.state.showForm &&
-        <NewForm handleAddTransaction={ this.handleAddTransaction } />
+        <NewForm 
+          handleAddTransaction={this.handleAddTransaction}
+          toggleForm={this.toggleForm} />
         }
+
+        {this.state.loggedIn &&
         <Transactions
           transactions={this.state.transactions}
-          handleDeleteTransaction={this.handleDeleteTransaction} />
+          handleDeleteTransaction={this.handleDeleteTransaction} /> }
         {/* <UserLogin /> */}
         {/* <CreateUser /> */}
       </div>

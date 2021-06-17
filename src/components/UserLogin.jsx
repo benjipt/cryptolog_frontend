@@ -1,6 +1,5 @@
 import {Component} from 'react'
 
-// const baseURL = 'http://localhost:3003'     //pre heroku
 let baseURL;
 
 if (process.env.NODE_ENV === 'development') {
@@ -58,8 +57,8 @@ class UserLogin extends Component {
                 userId: resJson._id,
                 userName: resJson.userName,
             })
-            this.props.loggedIn(resJson._id , resJson.userName)
-            this.props.toggleLogIn()     // this is used to automatically close the login window
+            this.props.toggleLoggedIn()
+            this.props.toggleLoginForm()
         })
         .catch(error => console.log({ 'Error' : error}))
     }
@@ -67,7 +66,7 @@ class UserLogin extends Component {
 
     render() {
         return(
-            <div>
+            <div className="mt-4 mb-4">
                 <h2>User Login</h2>
                 <form onSubmit={ this.handleSubmit } >
                     <div className="mb-3">

@@ -18,9 +18,9 @@ class CreateUser extends Component{
                 password: '',
                 passwordCheck: '',
             }
-            this.handleChange = this.handleChange.bind(this)
+        
+        this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     // *** FUNCTIONS *** 
@@ -64,6 +64,7 @@ class CreateUser extends Component{
                 userName: '',
                 password: '',
             })
+            this.props.toggleCreateUser()
         }
 
 
