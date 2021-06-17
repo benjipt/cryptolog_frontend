@@ -24,6 +24,7 @@ export default class App extends Component {
     super(props)
 
     this.state = {
+      loggedIn: false,
       transactions: [],
       showForm: false
     }
