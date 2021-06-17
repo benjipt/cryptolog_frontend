@@ -30,6 +30,9 @@ class CreateUser extends Component{
 
     handleSubmit(event) {
         event.preventDefault()
+        let pw1 = this.state.password
+        let pw2 = this.state.passwordCheck
+        // need some type of if statement to allow the fetch request to happen, not sure what to do if the if statement fails?
         fetch(baseURL + '/users', {
             method: 'POST',
             body: JSON.stringify({
