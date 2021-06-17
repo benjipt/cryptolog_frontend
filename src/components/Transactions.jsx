@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import Moment from 'react-moment'
 import EditForm from './EditForm'
 
-
-// const baseURL = 'http://localhost:3003'     //pre heroku
 let baseURL;
 
 if (process.env.NODE_ENV === 'development') {

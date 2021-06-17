@@ -1,7 +1,5 @@
 import {Component} from 'react'
 
-// const baseURL = 'http://localhost:3003'      //pre heroku
-
 let baseURL;
 
 if (process.env.NODE_ENV === 'development') {
@@ -50,20 +48,6 @@ class CreateUser extends Component{
                 'Content-Type': 'application/json'
                 }
             }).then(res => res.json())
-                // .then(resJson => {
-                // this.props.handleAddTransaction(resJson)
-                // // Reset Form fields: https://www.freecodecamp.org/news/how-to-clear-input-values-of-dynamic-form-in-react/
-                // Array.from(document.querySelectorAll("input")).forEach(
-                //     input => (input.value = "")
-                //   );
-                // this.setState({
-                //     userName: '',
-                //     password: '',
-                    
-                // })
-                // })
-                // .catch(error => console.log({ 'Error': error }))
-                // Reset Form fields: https://www.freecodecamp.org/news/how-to-clear-input-values-of-dynamic-form-in-react/
                 Array.from(document.querySelectorAll("input")).forEach(
                     input => (input.value = "")
                   );
@@ -75,7 +59,6 @@ class CreateUser extends Component{
             
             } else(
                 this.setState({ passwordsMatch: false })
-                // console.log('passwords do not match')
             )
        
         }
