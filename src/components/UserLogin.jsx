@@ -57,8 +57,8 @@ class UserLogin extends Component {
                 userId: resJson._id,
                 userName: resJson.userName,
             })
-            this.props.toggleLoggedIn()
-            this.props.toggleLoginForm()
+            this.props.toggleLoggedIn()         //MM: I dont think this is used, may have been from my old code
+            this.props.toggleLoginForm(resJson._id , resJson.userName)
         })
         .catch(error => console.log({ 'Error' : error}))
     }
