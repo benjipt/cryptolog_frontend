@@ -22,3 +22,7 @@ code {
 h1 {
   font-family: 'Major Mono Display', monospace;
 }
+
+.transactionList {
+  border: green 3px solid;
+}
