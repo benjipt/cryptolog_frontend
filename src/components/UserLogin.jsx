@@ -56,8 +56,8 @@ class UserLogin extends Component {
                 loggedIn: true,
                 userId: resJson._id,
             })
-            this.props.loggedIn()
-            this.props.toggleLogin()
+            this.props.toggleLoggedIn()
+            this.props.toggleLoginForm()
         })
         .catch(error => console.log({ 'Error' : error}))
     }
@@ -65,7 +65,7 @@ class UserLogin extends Component {
 
     render() {
         return(
-            <div className="mt-4">
+            <div className="mt-4 mb-4">
                 <h2>User Login</h2>
                 <form onSubmit={ this.handleSubmit } >
                     <div className="mb-3">
