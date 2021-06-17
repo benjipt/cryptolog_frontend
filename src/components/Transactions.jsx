@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Moment from 'react-moment'
 import EditForm from './EditForm'
 
+
 // const baseURL = 'http://localhost:3003'     //pre heroku
 let baseURL;
 
@@ -40,7 +41,7 @@ export default class Transactions extends Component {
     render() {
         return (
             <div className="container mt-5">
-                <table className="table table-borderless">
+                <table className="table table-borderless transactionList">
                     <thead>
                         <tr>
                             <th>Date</th>
