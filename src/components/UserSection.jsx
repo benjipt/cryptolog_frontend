@@ -30,11 +30,18 @@ class UserSection extends Component{
 
     // *** FUNCTIONS ***
     toggleLoginForm = (id , userName) => {
+        let showCreateForm = false
+        // if(this.state.showCreateUserForm) {
+        //     showCreateForm = false
+        // } else {
+        //     showCreateForm = false
+        // }
         this.setState({
             loggedIn: this.props.loggedIn,
             showLoginForm: !this.state.showLoginForm,    //MM: commented out for testing purposes
             userName: userName,
             userID: id,
+            showCreateUserForm: showCreateForm,
         })
     }
 
@@ -53,6 +60,12 @@ class UserSection extends Component{
         this.props.toggleLoggedIn()
     }
 
+    // setCreateUserStateToFalse(){
+    //     this.setState({
+    //         showCreateUserForm: false,
+    //     })
+    // }
+
     render() {
         return(
             <div className="mt-3">
@@ -68,7 +81,7 @@ class UserSection extends Component{
                     this.state.showLoginForm && 
                     <UserLogin 
                         toggleLoggedIn={this.props.toggleLoggedIn}
-                        toggleLoginForm={this.toggleLoginForm} />
+                        toggleLoginForm={this.toggleLoginForm}/>
                 }
                 {
                     this.state.showCreateUserForm &&
