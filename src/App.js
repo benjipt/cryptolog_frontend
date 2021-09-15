@@ -22,7 +22,7 @@ export default class App extends Component {
     this.state = {
       loggedIn: false,
       transactions: [],
-      showForm: false,
+      showNewForm: false,
       userLoggedIn: false,
       userID : '',
       userName : '',
@@ -33,7 +33,7 @@ export default class App extends Component {
     this.handleAddTransaction = this.handleAddTransaction.bind(this)
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
-    this.toggleForm = this.toggleForm.bind(this)
+    this.toggleNewForm = this.toggleNewForm.bind(this)
   }
 
   componentDidMount() {
@@ -46,9 +46,9 @@ export default class App extends Component {
     })
   }
 
-  toggleForm = () => {
+  toggleNewForm = () => {
     this.setState({
-      showForm: !this.state.showForm
+      showNewForm: !this.state.showNewForm
     })
   }
 
@@ -93,16 +93,16 @@ export default class App extends Component {
           loggedIn={this.state.loggedIn} />
 
         { this.state.loggedIn &&
-        <button className="btn btn-primary mt-3" onClick={this.toggleForm}>Add Transaction</button> }
+        <button className="btn btn-primary mt-3" onClick={this.toggleNewForm}>Add Transaction</button> }
         
 
-        { this.state.showForm &&
+        { this.state.showNewForm &&
         <NewForm 
           handleAddTransaction={this.handleAddTransaction}
-          toggleForm={this.toggleForm} />
+          toggleNewForm={this.toggleNewForm} />
         }
 
-        {this.state.loggedIn &&
+        {this.state.loggedIn && !this.state.showNewForm &&
         <Transactions
           transactions={this.state.transactions}
           handleDeleteTransaction={this.handleDeleteTransaction} /> }
