@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Transactions from './components/Transactions';
 import NewForm from './components/NewForm';
+import EditForm from './components/EditForm';
 import UserSection from './components/UserSection';
 
 let baseURL;
@@ -22,22 +23,21 @@ export default class App extends Component {
     this.state = {
       loggedIn: false,
       transactions: [],
+      selectedTransaction: {},
       showNewForm: false,
+      showEditForm: false,
       userLoggedIn: false,
       userID : '',
       userName : '',
-
     }
 
     this.toggleLoggedIn = this.toggleLoggedIn.bind(this)
     this.handleAddTransaction = this.handleAddTransaction.bind(this)
+    this.handleEditTransaction = this.handleEditTransaction.bind(this)
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
     this.toggleNewForm = this.toggleNewForm.bind(this)
-  }
-
-  componentDidMount() {
-    this.getTransactions()
+    this.toggleEditForm = this.toggleEditForm.bind(this)
   }
 
   toggleLoggedIn = () => {
@@ -49,6 +49,12 @@ export default class App extends Component {
   toggleNewForm = () => {
     this.setState({
       showNewForm: !this.state.showNewForm
+    })
+  }
+
+  toggleEditForm = () => {
+    this.setState({
+      showEditForm: !this.state.showEditForm
     })
   }
 
@@ -64,6 +70,15 @@ export default class App extends Component {
     this.setState({
       transactions: copyTransactions
     })
+  }
+
+  handleEditTransaction(event) {
+    fetch(`${baseURL}/transactions/${event.target.id}`)
+    .then(data => { return data.json()}, err => console.log(err))
+    .then(parsedData => this.setState({
+        showEditForm: true,
+        selectedTransaction: parsedData
+    }), err => console.log(err))
   }
 
   handleDeleteTransaction(event) {
@@ -92,7 +107,7 @@ export default class App extends Component {
           toggleLoggedIn={this.toggleLoggedIn}
           loggedIn={this.state.loggedIn} />
 
-        { this.state.loggedIn &&
+        { this.state.loggedIn && !this.state.showNewForm && !this.state.showEditForm &&
         <button className="btn btn-primary mt-3" onClick={this.toggleNewForm}>Add Transaction</button> }
         
 
@@ -102,9 +117,16 @@ export default class App extends Component {
           toggleNewForm={this.toggleNewForm} />
         }
 
-        {this.state.loggedIn && !this.state.showNewForm &&
+        { this.state.showEditForm &&
+        <EditForm 
+          transaction={this.state.selectedTransaction}
+          toggleEditForm={this.toggleEditForm} /> }
+
+        {this.state.loggedIn && !this.state.showNewForm && !this.state.showEditForm &&
         <Transactions
+          getTransactions={this.getTransactions}
           transactions={this.state.transactions}
+          handleEditTransaction={this.handleEditTransaction}
           handleDeleteTransaction={this.handleDeleteTransaction} /> }
       </div>
     )

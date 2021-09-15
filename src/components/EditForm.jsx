@@ -12,28 +12,19 @@ export default class EditForm extends Component {
     constructor(props) {
         super(props)
 
+        const { transaction } = props
+
         this.state = {
-            coin: '',
-            quantity: '',
-            perUnitPrice: '',
-            exchange: '',
-            transactionDate: '',
-            transactionType: ''
+            coin: transaction.coin,
+            quantity: transaction.quantity.$numberDecimal,
+            perUnitPrice: transaction.perUnitPrice.$numberDecimal,
+            exchange: transaction.exchange,
+            transactionDate: transaction.transactionDate,
+            transactionType: transaction.transactionType
         }
 
         this.handleChange = this.handleChange.bind(this)
         this.handleUpdateTransaction = this.handleUpdateTransaction.bind(this)
-    }
-
-    componentDidMount(){
-        this.setState({
-            coin: this.props.transaction.coin,
-            quantity: this.props.transaction.quantity.$numberDecimal,
-            perUnitPrice: this.props.transaction.perUnitPrice.$numberDecimal,
-            exchange: this.props.transaction.exchange,
-            transactionDate: this.props.transaction.transactionDate,
-            transactionType: this.props.transaction.transactionType
-        })
     }
 
     handleChange(event) {

@@ -1,40 +1,11 @@
 import React, { Component } from 'react'
 import Moment from 'react-moment'
-import EditForm from './EditForm'
-
-let baseURL;
-
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3003';
-} else {
-  baseURL = 'https://cryptolog-api.herokuapp.com';
-}
 
 export default class Transactions extends Component {
-    constructor(props) {
-        super(props)
 
-        this.state = {
-            editTransaction: false,
-            transaction: {}
-        }
-
-        this.handleEdit = this.handleEdit.bind(this)
-        this.toggleEditForm = this.toggleEditForm.bind(this)
-    }
-
-    handleEdit(event) {
-        fetch(`${baseURL}/transactions/${event.target.id}`)
-        .then(data => { return data.json()}, err => console.log(err))
-        .then(parsedData => this.setState({
-            editTransaction: !this.state.editTransaction,
-            transaction: parsedData
-        }), err => console.log(err))
-    }
-
-    toggleEditForm() {
-        this.setState({ editTransaction: !this.state.editTransaction })
-    }
+    componentDidMount() {
+        this.props.getTransactions()
+      }
 
     render() {
         return (
@@ -65,7 +36,7 @@ export default class Transactions extends Component {
                                     <td>{ transaction.perUnitPrice.$numberDecimal }</td>
                                     <td>{ transaction.exchange }</td>
                                     <td><button 
-                                        onClick={ this.handleEdit }
+                                        onClick={ this.props.handleEditTransaction }
                                         id={ transaction._id } 
                                         className="btn btn-outline-secondary btn-sm">EDIT</button></td>
                                     <td><button 
@@ -77,10 +48,6 @@ export default class Transactions extends Component {
                         }) }
                     </tbody>
                 </table>
-                { this.state.editTransaction && 
-                <EditForm 
-                    transaction={this.state.transaction}
-                    toggleEditForm={this.toggleEditForm} /> }
             </div>
         )
     }
