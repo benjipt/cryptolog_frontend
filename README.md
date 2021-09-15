@@ -25,8 +25,11 @@ Complete w/ plans to add future updates/features:
 - User can reset password.
 - User can validate email.
 - Fix known issue: Login Form & New User Form can surface at same time.
-- Fix known issue: Transaction does not update automatically on page after edit form submission.
 - Fix known issue: password match conditional notification should only render when passwords do not match (briefly renders even when matching).
+
+## Change log
+9/15/21
+- Fixed known issue: Transactions now update automatically after edit form submission. Switched from Moment to date-fns for date rendering.
 
 ## User Stories
 - Users can add purchase transactions of their respective currency unit at a specific price and time.
