@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Moment from 'react-moment'
+import { format } from 'date-fns'
 
 export default class Transactions extends Component {
 
@@ -23,12 +23,12 @@ export default class Transactions extends Component {
                     </thead>
                     <tbody>
                         { this.props.transactions.map(transaction => {
+                            // Uses date-fns to convert transaction.transactionDate from ISO to readable format
+                            const formattedDate = format(new Date(transaction.transactionDate), 'MM-dd-yyyy')
                             return (
                                 <tr key={ transaction._id }>
                                     <td>
-                                        <Moment format="MM/DD/YYYY">
-                                        { transaction.transactionDate }
-                                        </Moment>
+                                        { formattedDate }
                                     </td>
                                     <td>{ transaction.transactionType }</td>
                                     <td>{ transaction.coin }</td>
