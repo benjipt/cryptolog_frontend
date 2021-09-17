@@ -3,6 +3,7 @@ import Transactions from './components/Transactions';
 import NewForm from './components/NewForm';
 import EditForm from './components/EditForm';
 import Login from './components/Login'
+import Logout from './components/Logout';
 
 let baseURL;
 
@@ -13,8 +14,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 console.log('current base URL:', baseURL)
-
-
 
 export default class App extends Component {
   constructor(props) {
@@ -31,6 +30,7 @@ export default class App extends Component {
     }
 
     this.handleLogin = this.handleLogin.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
     this.handleAddTransaction = this.handleAddTransaction.bind(this)
     this.handleEditTransaction = this.handleEditTransaction.bind(this)
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this)
@@ -42,8 +42,15 @@ export default class App extends Component {
   handleLogin = profile => {
     const { googleId } = profile
     this.setState({
-        loggedIn: true,
-        userGoogleId: googleId
+      loggedIn: true,
+      userGoogleId: googleId
+    })
+  }
+
+  handleLogout = () => {
+    this.setState({
+      loggedIn: false,
+      userGoogleId: ''
     })
   }
 
@@ -108,6 +115,10 @@ export default class App extends Component {
         { !this.state.loggedIn &&
         <Login 
           handleLogin={ this.handleLogin } /> }
+
+        { this.state.loggedIn &&
+        <Logout 
+          handleLogout={ this.handleLogout } /> }
 
         { this.state.loggedIn && !this.state.showNewForm && !this.state.showEditForm &&
         <button className="btn btn-primary mt-3" onClick={this.toggleNewForm}>Add Transaction</button> }
