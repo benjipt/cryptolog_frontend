@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Transactions from './components/Transactions';
 import NewForm from './components/NewForm';
 import EditForm from './components/EditForm';
-import UserSection from './components/UserSection';
+import Login from './components/Login'
+import Logout from './components/Logout';
 
 let baseURL;
 
@@ -13,8 +14,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 console.log('current base URL:', baseURL)
-
-
 
 export default class App extends Component {
   constructor(props) {
@@ -27,11 +26,11 @@ export default class App extends Component {
       showNewForm: false,
       showEditForm: false,
       userLoggedIn: false,
-      userID : '',
-      userName : '',
+      userGoogleId : ''
     }
 
-    this.toggleLoggedIn = this.toggleLoggedIn.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
     this.handleAddTransaction = this.handleAddTransaction.bind(this)
     this.handleEditTransaction = this.handleEditTransaction.bind(this)
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind(this)
@@ -40,9 +39,18 @@ export default class App extends Component {
     this.toggleEditForm = this.toggleEditForm.bind(this)
   }
 
-  toggleLoggedIn = () => {
+  handleLogin = profile => {
+    const { googleId } = profile
     this.setState({
-        loggedIn: !this.state.loggedIn
+      loggedIn: true,
+      userGoogleId: googleId
+    })
+  }
+
+  handleLogout = () => {
+    this.setState({
+      loggedIn: false,
+      userGoogleId: ''
     })
   }
 
@@ -58,8 +66,8 @@ export default class App extends Component {
     })
   }
 
-  getTransactions() {
-    fetch(baseURL + '/transactions')
+  getTransactions = userId => {
+    fetch(baseURL + '/transactions/' + userId)
     .then(data => { return data.json()}, err => console.log(err))
     .then(parsedData => this.setState({transactions: parsedData}), err => console.log(err))
   }
@@ -103,9 +111,14 @@ export default class App extends Component {
 
       <div className="container text-center mt-4 mb-4">
         <h1 className="display-1">CRYPTOLOG</h1>
-        <UserSection
-          toggleLoggedIn={this.toggleLoggedIn}
-          loggedIn={this.state.loggedIn} />
+        
+        { !this.state.loggedIn &&
+        <Login 
+          handleLogin={ this.handleLogin } /> }
+
+        { this.state.loggedIn &&
+        <Logout 
+          handleLogout={ this.handleLogout } /> }
 
         { this.state.loggedIn && !this.state.showNewForm && !this.state.showEditForm &&
         <button className="btn btn-primary mt-3" onClick={this.toggleNewForm}>Add Transaction</button> }
@@ -124,10 +137,11 @@ export default class App extends Component {
 
         {this.state.loggedIn && !this.state.showNewForm && !this.state.showEditForm &&
         <Transactions
-          getTransactions={this.getTransactions}
-          transactions={this.state.transactions}
-          handleEditTransaction={this.handleEditTransaction}
-          handleDeleteTransaction={this.handleDeleteTransaction} /> }
+          userId={ this.state.userGoogleId }
+          getTransactions={ this.getTransactions }
+          transactions={ this.state.transactions }
+          handleEditTransaction={ this.handleEditTransaction }
+          handleDeleteTransaction={ this.handleDeleteTransaction } /> }
       </div>
     )
   }
