@@ -31,7 +31,6 @@ export default class NewForm extends Component {
 
     handleSubmit(event) {
     event.preventDefault()
-    console.log(event.currentTarget)
     fetch(baseURL + '/transactions', {
         method: 'POST',
         body: JSON.stringify({
@@ -41,7 +40,7 @@ export default class NewForm extends Component {
             exchange: this.state.exchange,
             transactionDate: this.state.transactionDate,
             transactionType: this.state.transactionType,
-            createdBy: 'test',
+            userId: this.props.userId,
         }),
         headers: {
         'Content-Type': 'application/json'

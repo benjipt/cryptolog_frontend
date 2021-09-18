@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 export default class Transactions extends Component {
 
     componentDidMount() {
-        this.props.getTransactions()
+        this.props.getTransactions(this.props.userId)
       }
 
     render() {
