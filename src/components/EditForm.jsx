@@ -58,6 +58,9 @@ export default class EditForm extends Component {
     render() {
         return (
             <div className="mt-3 text-start">
+                <div className="d-grid gap-2 mt-4 mb-2">
+                    <button className="btn btn-lg btn-secondary" onClick={ this.props.toggleEditForm } >Back</button>
+                </div>
                 <form onSubmit={this.handleUpdateTransaction} >
                     <div className="mb-3">
                         <label htmlFor="coin" className="form-label">Coin</label>
