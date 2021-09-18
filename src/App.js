@@ -80,15 +80,6 @@ export default class App extends Component {
     })
   }
 
-  // handleEditTransaction(event) {
-  //   fetch(`${baseURL}/transactions/${event.target.id}`)
-  //   .then(data => { return data.json()}, err => console.log(err))
-  //   .then(parsedData => this.setState({
-  //       showEditForm: true,
-  //       selectedTransaction: parsedData
-  //   }), err => console.log(err))
-  // }
-
   handleEditTransaction = e => {
     const { id } = e.target
     const thisTransaction = this.state.transactions.find(transaction => transaction._id === id)
