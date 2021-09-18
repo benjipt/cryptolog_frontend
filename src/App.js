@@ -126,6 +126,7 @@ export default class App extends Component {
 
         { this.state.showNewForm &&
         <NewForm 
+          userId={ this.state.userGoogleId }
           handleAddTransaction={this.handleAddTransaction}
           toggleNewForm={this.toggleNewForm} />
         }
